@@ -5,16 +5,13 @@
     list-style-type: none;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 html{
     scroll-behavior: smooth;
 }
 body{
     min-height: 100vh;
-   /* background-image: url(/Gitsample/img&others/home.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;*/
 }
 header{
     position: sticky;
@@ -33,17 +30,33 @@ header>ul{
     justify-content: space-around;
     align-items: center;
 }
+/* Background*/
+header,footer{
+    background-color: rgb(32, 32, 58);
+    color: #fff;
+}
 /*Flex */
 main{
-    padding: 10px;
-    height: auto;
+    margin: 0 10vw;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+fieldset legend img {
+    padding: 0 10px;
+    height: 60px;
+    width: 60px;
+}
+fieldset  q{
+    top: -10px;
+    padding: 0 4%;
 }
 footer{
-    position: fixed;
+    position:relative;
     bottom: 0;
     width: 100%;
     height: 10vh;
-    background-color: rgb(32, 32, 58);
     display: flex;
     justify-content: center;
     align-items: center;
