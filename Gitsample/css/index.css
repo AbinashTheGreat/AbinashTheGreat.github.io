@@ -37,20 +37,26 @@ header,footer{
 }
 /*Flex */
 main{
-    margin: 0 10vw;
     min-height: 80vh;
+    width: 80%;
+    margin:0 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 fieldset legend img {
     padding: 0 10px;
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+fieldset{
+    padding: 10px;
 }
 fieldset  q{
-    top: -10px;
-    padding: 0 4%;
+    position: relative;
+    padding: 0 10%;
+    top: -20px;
 }
 footer{
     position:relative;
@@ -63,4 +69,26 @@ footer{
 }
 a{
     color: #fff;
+}
+/* Responsive */
+@media (max-width:1000px){
+    fieldset q{
+        margin: 5px;
+        padding: 0 90px;
+    }
+}
+/*@media (max-width: 588px){
+    header h1{
+        font-size: 20px;
+    }
+
+}
+*/
+@media (max-width: 480px){
+    header{
+        height: 15vh;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
