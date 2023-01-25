@@ -30,6 +30,9 @@ header>ul{
     justify-content: space-around;
     align-items: center;
 }
+a{
+    color: #fff;
+}
 /* Background*/
 header,footer{
     background-color: rgb(32, 32, 58);
@@ -52,12 +55,15 @@ fieldset legend img {
 }
 fieldset{
     padding: 10px;
+    border-radius: .3rem;
 }
 fieldset  q{
     position: relative;
     padding: 0 10%;
     top: -20px;
+    text-align: center;
 }
+/* Footer Area*/
 footer{
     position:relative;
     bottom: 0;
@@ -66,9 +72,6 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-a{
-    color: #fff;
 }
 /* Responsive */
 @media (max-width:1000px){
@@ -86,9 +89,16 @@ a{
 */
 @media (max-width: 480px){
     header{
-        height: 15vh;
+        height: 12vh;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+    }
+    header ul{
+        width: 100%;
+        padding: 0 .3rem;
+    }
+    footer{
+        font-size: small;
     }
 }
