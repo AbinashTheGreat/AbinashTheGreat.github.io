@@ -63,6 +63,11 @@ fieldset  q{
     top: -20px;
     text-align: center;
 }
+#todo a{
+    padding: 10px;
+    background: rgb(246, 157, 33);
+    border-radius:10px;
+}
 /* Footer Area*/
 footer{
     position:relative;

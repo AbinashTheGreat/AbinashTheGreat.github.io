@@ -1,0 +1,16 @@
+.container .heading{
+    font-size: 2rem;
+    letter-spacing: .2rem;
+    text-align: center;
+    text-shadow: 0 .3rem .5rem rgba(0, 0, 0, 0.5);
+}
+.video-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.video{
+    border: 1px solid black;
+}
+.video-container .video{
+    margin: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+}
