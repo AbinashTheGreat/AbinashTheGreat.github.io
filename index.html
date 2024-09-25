@@ -7,87 +7,10 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Student Result Generator</h1>
-
-        <!-- Form to input student and marks information -->
-        <form id="studentForm">
-            <div class="school-info">
-                <h2>School Information</h2>
-                <label for="schoolName">School Name:</label>
-                <input type="text" id="schoolName" value="Sayapatri Shishu Sadan English School" required>
-                
-                <label for="address">Address:</label>
-                <input type="text" id="address" value="Ithari-19, Sunsari" required>
-                
-                <label for="contact">Contact Info:</label>
-                <input type="text" id="contact" value="025-5246245, sayapatri_2046@gmail.com" required>
-                
-                <label for="batchYear">Batch Year:</label>
-                <input type="text" id="batchYear" value="2076" required>
-            </div>
-
-            <div class="student-info">
-                <h2>Student Information</h2>
-                <label for="studentName">Student Name:</label>
-                <input type="text" id="studentName" required>
-
-                <label for="rollNumber">Roll Number:</label>
-                <input type="text" id="rollNumber" required>
-
-                <label for="class">Class:</label>
-                <input type="text" id="class" value="6" required>
-
-                <label for="section">Section:</label>
-                <input type="text" id="section" required>
-            </div>
-
-            <div class="marks-entry">
-                <h2>Enter Marks</h2>
-                <div id="subjects">
-                    <div class="subject">
-                        <label for="subjectName">Subject:</label>
-                        <input type="text" class="subjectName" value="English" required>
-
-                        <label for="theoryMarks">Theory Marks:</label>
-                        <input type="number" class="theoryMarks" required>
-
-                        <label for="practicalMarks">Practical Marks:</label>
-                        <input type="number" class="practicalMarks" required>
-                    </div>
-                </div>
-                <button type="button" id="addSubjectBtn">Add Another Subject</button>
-            </div>
-
-            <div class="extra-details">
-                <h2>Extra Details</h2>
-                <label for="activities">Extra Activities:</label>
-                <textarea id="activities"></textarea>
-
-                <label for="remarks">Remarks:</label>
-                <textarea id="remarks"></textarea>
-
-                <label for="attendance">Attendance:</label>
-                <input type="text" id="attendance" required>
-
-                <label for="issueDate">Issue Date:</label>
-                <input type="date" id="issueDate" required>
-            </div>
-
-            <button type="button" id="generateResultBtn">Generate Result</button>
-        </form>
-
-        <!-- Result Preview -->
-        <div id="resultPreview">
-            <h2>Result Preview</h2>
-            <div id="resultCard">
-                <!-- The result card will be dynamically generated here -->
-            </div>
-            <button id="downloadPDF">Download as PDF</button>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <h1>Binary Converter</h1>
+    <input type="number" placeholder="Enter a number" id="decimal">
+    <button id="btn">Convert</button><br>
+    <p id="result"></p>
     <script src="script.js"></script>
 </body>
 </html>
