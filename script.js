@@ -1,5 +1,5 @@
 const decimal = document.getElementById("decimal")
-const btn = document.getElementById("btn")
+const Btn = document.getElementById("btn")
 const result = document.getElementById("result")
 let binaryList = [];
 
@@ -17,11 +17,11 @@ function binaryConverter(){
   }
   console.log(binaryList)
   let reverseBinary = binaryList.reverse().join("");
-  result.innerHTML = `The Binary Value for (${decimal.value})<sub>10</sub> is (${reverseBinary})<sub>2</sub>`;
+  binaryResult.innerHTML = `The Binary Value for (${decimal.value})<sub>10</sub> is (${reverseBinary})<sub>2</sub>`;
   console.log(reverseBinary)
   decimal.value = "";
 }
-btn.addEventListener("click", () =>{
+binaryBtn.addEventListener("click", () =>{
   binaryConverter()
   binaryList = []
 })
