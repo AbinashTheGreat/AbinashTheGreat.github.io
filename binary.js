@@ -1,4 +1,4 @@
-const binaryBtn = document.getElementById("binaryBtn");
+const btn = document.getElementById("binaryBtn");
 const binaryIn = document.getElementById("binary");
 const binaryResult = document.getElementById("binaryResult");
 // Binary To Decimal Converter
@@ -9,7 +9,8 @@ function binaryToDecimal(){
     decimal += arr[i] * (2 ** i)
   }
   binaryResult.innerHTML=`The Decimal Value for (${binaryIn.value})<sub>2</sub> is (${decimal})<sub>10</sub>`;
+  binaryIn.value = "";
 }
-binaryBtn.addEventListener("click", () =>{
+btn.addEventListener("click", () =>{
    binaryToDecimal();
 })
