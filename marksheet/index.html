@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BAGMATI SECONDARY SCHOOL — Grade Sheet Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Parsers -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  
+  <div class="ui">
+    <div class="ui-left">
+      <h2>Marks Import & Settings</h2>
+
+      <label>School motto
+        <input id="schoolMotto" type="text" value="Quality education is our Motto" required>
+      </label>
+
+      
+      <label>School name
+        <input id="schoolName" type="text" value="BAGMATI SECONDARY SCHOOL" required>
+      </label>
+
+      <label>School address
+        <input id="schoolAddress" type="text" value="Chandrapur-1, Rautahat" required>
+      </label>
+
+      <label>ESTD
+        <input id="estd" type="text" value="ESTD: 2026" required>
+      </label>
+
+      <label>IEMIS Code
+        <input id="iemis" type="text" value="IEMIS Code : 9846554489451" required>
+      </label>
+
+      <label>Logo (optional)
+        <input id="logoInput" type="file" accept="image/*">
+      </label>
+
+      <label>Class / Grade
+        <input id="classInput" type="text" placeholder="e.g. Grade 10" value="10" required>
+      </label>
+
+      <label>Term
+        <input id="termInput" type="text" placeholder="e.g. First Term" value="First Term" required>
+      </label>
+
+      <label>Year (B.S.)
+        <input id="yearInput" type="text" placeholder="e.g. 2081" value="2081" required>
+      </label>
+
+      <label>Issue Date (B.S.)
+  <div class="date-inputs">
+    <input id="issueDay" type="number" placeholder="Day" min="1" max="32" value="1" required>
+    <input id="issueMonth" type="number" placeholder="Month" min="1" max="12" value="1" required>
+    <input id="issueYear" type="number" placeholder="Year" min="2000" max="2100" value="2081" required>
+  </div>
+</label>
+
+      <label>Theory pass marks (same for all subjects)
+        <input id="passTheory" type="number" placeholder="e.g. 32" value="32" min="0" max="100" required>
+      </label>
+
+      <label>Practical pass marks (same for all subjects)
+        <input id="passPractical" type="number" placeholder="e.g. 8" value="8" min="0" max="100" required>
+      </label>
+
+      <label>Theory full marks (same for all subjects)
+        <input id="fullTheory" type="number" placeholder="e.g. 75" value="75" min="0" max="100" required>
+      </label>
+
+      <label>Practical full marks (same for all subjects)
+        <input id="fullPractical" type="number" placeholder="e.g. 25" value="25" min="0" max="100" required>
+      </label>
+
+      <hr>
+
+      <label class="toggle-container">
+        <span>Display Mode:</span>
+        <div class="toggle-switch">
+          <input type="checkbox" id="displayModeToggle">
+          <label for="displayModeToggle" class="toggle-label">
+            <span class="toggle-text">Marks</span>
+            <span class="toggle-text">Grades</span>
+          </label>
+        </div>
+      </label>
+
+      <label>
+        <input type="checkbox" id="showPercentageToggle">
+        Show percentage alongside GPA
+      </label>
+
+      <hr>
+
+      <h3>Subject Management</h3>
+      <div id="subjectContainer">
+        <!-- Subjects will be added here by JavaScript -->
+      </div>
+      <button type="button" id="addSubjectBtn">Add Subject</button>
+
+      <h3>Grading Scale</h3>
+      <div id="gradeScaleContainer">
+        <!-- Grade scale will be added here by JavaScript -->
+      </div>
+      <button type="button" id="resetGradeScaleBtn">Reset to Default</button>
+
+      <hr>
+
+      <label>Upload marks file (.xlsx or .csv)
+        <input id="fileInput" type="file" accept=".xlsx,.xls,.csv">
+      </label>
+
+      <div class="buttons">
+        <button id="loadSampleBtn">Load Sample (10 students)</button>
+        <button id="generateBtn">Generate Results</button>
+        <button id="printBtn">Print</button>
+        <button id="clearBtn" class="ghost">Clear</button>
+      </div>
+
+      <div class="help">
+        <strong>File format notes</strong>
+        <ul>
+          <li>Must include a Roll column (e.g. <code>Roll</code>) and preferably Name (<code>Name</code>).</li>
+          <li>Subjects may be columns like <code>Mathematics Theory</code>, <code>Mathematics Practical</code> or grouped as <code>Subject_Math</code>, <code>Subject_Math_TH</code>, <code>Subject_Math_PR</code>.</li>
+          <li>Attendance: use headers <code>TotalDays</code>, <code>Present</code>, <code>Absent</code> if available.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ui-right">
+      <div id="printArea" class="print-area"></div>
+    </div>
+  </div>
+
+  <!-- Template (JS will clone and fill) -->
+  <template id="marksheet-template">
+    <div class="marksheet">
+      <div class="sheet-top ascii-frame">
+        <div class="logo-slot"><img class="logo-img" src="" alt="Logo" style="display:none"></div>
+        <div class="heading-block">
+          <div class="motto">"Quality education is our Motto"</div>
+          <div class="school-name">BAGMATI SECONDARY SCHOOL</div>
+          <div class="address">Chandrapur-1, Rautahat</div>
+          <div class="estd">[ESTD : 2020]</div>
+          <div class="iemis">IEMIS Code : 9846554489451</div>
+          <div class="sheet-title">GRADE SHEET</div>
+        </div>
+      </div>
+
+      <div class="student-block">
+        <div class="row">
+          <div class="left"><strong>Name:</strong> <span class="st-name"></span></div>
+          <div class="center"><strong>Class:</strong> <span class="st-class"></span></div>
+          <div class="right"><strong>Roll No:</strong> <span class="st-roll"></span></div>
+        </div>
+        <div class="row">
+          <div class="left"><strong>Term:</strong> <span class="st-term"></span></div>
+          <div class="right"><strong>Year (B.S.):</strong> <span class="st-year"></span></div>
+        </div>
+      </div>
+
+      <table class="marks-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Subject</th>
+            <th>Credit Hours</th>
+            <th>TH</th>
+            <th>PR</th>
+            <th>Grade</th>
+            <th>GPA</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody class="marks-body"></tbody>
+      </table>
+
+      <div class="summary-row">
+        <div>GPA: <span class="st-gpa"></span></div>
+        <div>Rank: <span class="st-rank"></span></div>
+        <div class="total-row">
+          Total Marks: <span class="st-total-marks"></span> / <span class="st-total-max"></span>
+        </div>
+      </div>
+
+      <div class="grade-table-horizontal">
+        <div class="gt-title">GRADE TABLE</div>
+        <table class="gt-h">
+          <tr class="gt-h-row">
+            <td>A+</td><td>A</td><td>B+</td><td>B</td><td>C+</td><td>C</td><td>D</td><td>NG</td>
+          </tr>
+          <tr class="gt-h-row">
+            <td>4.0</td><td>3.6</td><td>3.2</td><td>2.8</td><td>2.4</td><td>2.0</td><td>1.6</td><td>0.0</td>
+          </tr>
+          <tr class="gt-h-row small">
+            <td>90–100</td><td>80–&lt;90</td><td>70–&lt;80</td><td>60–&lt;70</td>
+            <td>50–&lt;60</td><td>40–&lt;50</td><td>35–&lt;40</td><td>&lt;35</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="attendance-row">
+        <div><strong>Attendance: </strong>Total Days: <span class="att-total"></span></div>
+        <div>Present: <span class="att-present"></span></div>
+        <div>Absent: <span class="att-absent"></span></div>
+      </div>
+
+      <div class="issue-remarks">
+        <div>Issue Date: <span class="issue-date"></span></div>
+        <div>Remarks:</span></div>
+      </div>
+
+      <div class="signatures">
+        <div>
+          <span class="signature-line"></span>
+          Class Teacher
+        </div>
+        <div>
+          <span class="signature-line"></span>
+          School Seal
+        </div>
+        <div>
+          <span class="signature-line"></span>
+          Principal
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!-- contact-us.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiksha Mitra - Contact Us</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script>
+        // Check if the user is logged in by checking localStorage
+        if (!localStorage.getItem('isLoggedIn')) {
+            // Redirect to the login page if not logged in
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Contact Us - Shiksha Mitra</h1>
+        <nav>
+            <a href="exam.html">Home</a>
+            <a href="services.html">Services</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="card-section">
+            <h2>Get in Touch</h2>
+            <p>Feel free to reach out to us via social media or through our contact details below.</p>
+
+            <!-- Contact Information Boxes -->
+            <div class="contact-box">
+                <h3>Follow Us on Facebook</h3>
+                <a href="https://www.facebook.com/ShikshaMitra" target="_blank">Visit our Facebook Page</a>
+            </div>
+            <div class="contact-box">
+                <h3>Send us an Email</h3>
+                <a href="mailto:info@shikshamitra.com">Send Email</a>
+            </div>
+            <div class="contact-box">
+                <h3>Call Us</h3>
+                <a href="tel:+977123456789">Call +977-123456789</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Shiksha Mitra. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

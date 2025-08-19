@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admit Card Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="ui-container">
+        <div class="input-panel">
+            <h1>Admit Card Generator</h1>
+            
+            <section class="form-group">
+                <h2>School Information</h2>
+                <label for="schoolName">School Name</label>
+                <input type="text" id="schoolName" value="BAGMATI SECONDARY SCHOOL" aria-label="School Name">
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeMotto" checked>
+                    <label for="includeMotto">Include Motto</label>
+                </div>
+                <label for="schoolMotto">Motto</label>
+                <input type="text" id="schoolMotto" value="Quality education is our Motto" aria-label="School Motto">
+                
+                <label for="schoolAddress">Address</label>
+                <input type="text" id="schoolAddress" value="Chandrapur-1, Rautahat" aria-label="School Address">
+                
+                <label for="schoolContact">Contact Number</label>
+                <input type="tel" id="schoolContact" value="9876543210" aria-label="School Contact Number">
+                
+                <label for="schoolLogo">Logo (Optional)</label>
+                <input type="file" id="schoolLogo" accept="image/*" aria-label="School Logo Upload">
+            </section>
+
+            <section class="form-group">
+                <h2>Student Data</h2>
+                <label for="studentData">Upload Excel File (.xlsx)</label>
+                <input type="file" id="studentData" accept=".xlsx,.xls" aria-label="Student Data Excel Upload">
+                
+                <div id="columnMappingModal" style="display: none;">
+                    <div class="modal-content">
+                        <h3>Map Excel Columns</h3>
+                        <label for="mapRoll">Roll Number</label>
+                        <select id="mapRoll" aria-label="Map Roll Number"></select>
+                        
+                        <label for="mapName">Student Name</label>
+                        <select id="mapName" aria-label="Map Student Name"></select>
+                        
+                        <label for="mapClass">Class</label>
+                        <select id="mapClass" aria-label="Map Class"></select>
+                        
+                        <label for="mapSection">Section</label>
+                        <select id="mapSection" aria-label="Map Section"></select>
+                        
+                        <label for="mapGuardian">Guardian Name</label>
+                        <select id="mapGuardian" aria-label="Map Guardian Name"></select>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="includeGuardianContact" checked>
+                            <label for="includeGuardianContact">Include Guardian Contact</label>
+                        </div>
+                        <label for="mapGuardianContact">Guardian Contact</label>
+                        <select id="mapGuardianContact" aria-label="Map Guardian Contact"></select>
+                        
+                        <label for="mapSchedule">Schedule (Optional)</label>
+                        <select id="mapSchedule" aria-label="Map Schedule"></select>
+                        
+                        <button id="confirmMapping" role="button">Confirm Mapping</button>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includePhotos">
+                    <label for="includePhotos">Include student photos</label>
+                </div>
+                
+                <div id="photoUploadContainer" style="display: none;">
+                    <label for="studentPhotos">Upload Photos (ZIP)</label>
+                    <input type="file" id="studentPhotos" accept=".zip" aria-label="Student Photos ZIP Upload">
+                </div>
+            </section>
+
+            <section class="form-group">
+                <h2>Exam Information</h2>
+                <label for="classInput">Class</label>
+                <input type="text" id="classInput" value="10" aria-label="Class">
+                
+                <label>Exam Period</label>
+                <div class="date-inputs">
+                    <input type="date" id="examStartDate" aria-label="Exam Start Date" required>
+                    <span>to</span>
+                    <input type="date" id="examEndDate" aria-label="Exam End Date" required>
+                </div>
+
+                <label for="startDay">Start Day of Week</label>
+                <select id="startDay" aria-label="Start Day of Week">
+                    <option value="0">Sunday</option>
+                    <option value="1">Monday</option>
+                    <option value="2">Tuesday</option>
+                    <option value="3">Wednesday</option>
+                    <option value="4">Thursday</option>
+                    <option value="5">Friday</option>
+                    <option value="6">Saturday</option>
+                </select>
+
+                <label for="teacherPhone">Class Teacher Phone</label>
+                <input type="tel" id="teacherPhone" value="9876543210" aria-label="Class Teacher Phone">
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="includeTeacherSig">
+                    <label for="includeTeacherSig">Include class teacher signature</label>
+                </div>
+                
+                <label for="teacherSig">Class Teacher Signature</label>
+                <input type="file" id="teacherSig" accept="image/*" aria-label="Class Teacher Signature Upload">
+                
+                <label>Exam Schedule</label>
+                <div id="scheduleInputs"></div>
+                <button id="addSubjectBtn" type="button" role="button">Add Subject</button>
+            </section>
+
+            <section class="form-group">
+                <h2>Signatures</h2>
+                <label for="principalSig">Principal's Signature</label>
+                <input type="file" id="principalSig" accept="image/*" aria-label="Principal Signature Upload">
+                
+                <label for="coordinatorSig">Exam Coordinator</label>
+                <input type="file" id="coordinatorSig" accept="image/*" aria-label="Exam Coordinator Signature Upload">
+            </section>
+
+            <div class="action-buttons">
+                <button id="generateBtn" role="button">Generate Cards</button>
+                <button id="printBtn" role="button">Print All</button>
+                <button id="pdfBtn" role="button">Export PDF</button>
+                <button id="resetBtn" role="button">Reset</button>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <div id="previewArea"></div>
+            <div class="pagination">
+                <button id="prevPage" disabled role="button">Previous</button>
+                <button id="nextPage" disabled role="button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="printConfirmModal" style="display: none;">
+        <div class="modal-content">
+            <h3>Confirm Print</h3>
+            <p id="printSummary"></p>
+            <button id="confirmPrint" role="button">Print</button>
+            <button id="cancelPrint" role="button">Cancel</button>
+        </div>
+    </div>
+
+    <template id="frontTemplate">
+        <div class="admit-card front-card">
+            <div class="school-header">
+                <img class="school-logo" src="" alt="School Logo">
+                <div class="header-text">
+                    <h1 class="school-name"></h1>
+                    <p class="motto"></p>
+                    <p class="address"></p>
+                </div>
+            </div>
+            <h2>ADMIT CARD</h2>
+            <div class="student-info">
+                <p><span class="label">Name: </span><span class="student-name"></span></p>
+                <p><span class="label">Roll No: </span><span class="student-roll"></span></p>
+                <p><span class="label">Class: </span><span class="student-class"></span></p>
+                <p class="guardian-field"><span class="label">Guardian: </span><span class="student-guardian"></span></p>
+                <p class="guardian-contact-field"><span class="label">Contact: </span><span class="student-contact"></span></p>
+                <p><span class="label">Valid: </span><span class="exam-dates"></span></p>
+            </div>
+            <div class="signatures">
+                <div class="principal-sig"></div>
+                <div class="coordinator-sig"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="backTemplate">
+        <div class="admit-card back-page">
+            <h2>EXAM SCHEDULE</h2>
+            <div class="exam-schedule">
+                <table>
+                    <thead>
+                        <tr><th>Schedule</th></tr>
+                    </thead>
+                    <tbody class="schedule-body"></tbody>
+                </table>
+            </div>
+            <div class="exam-rules">
+                <h3>EXAMINATION RULES</h3>
+                <ol>
+                    <li>Bring this admit card for all exams</li>
+                    <li>Arrive 30 minutes before exam time</li>
+                    <li>No electronic devices allowed</li>
+                    <li>Valid ID proof must be carried</li>
+                </ol>
+            </div>
+            <div class="class-teacher">
+                <h3>Class Teacher</h3>
+                <p class="teacher-phone"></p>
+                <div class="teacher-sig">
+                    <img src="" alt="Class Teacher Signature">
+                    <p>Signature</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

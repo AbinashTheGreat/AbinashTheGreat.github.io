@@ -1,0 +1,62 @@
+<!-- services.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiksha Mitra - Services</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <script>
+        // Check if the user is logged in by checking localStorage
+        if (!localStorage.getItem('isLoggedIn')) {
+            // Redirect to the login page if not logged in
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Our Services</h1>
+        <nav>
+            <a href="exam.html">Home</a>
+            <a href="contact-us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="card-section">
+            <h2>Explore Our Educational Services</h2>
+            <div class="card-container">
+                <div class="card">
+                    <a href="marksheet/index.html">
+                        <h3>Marksheet</h3>
+                        <p>Click here for generating gradesheet</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="admitCard/index.html">
+                        <h3>Admit Card</h3>
+                        <p>Click here to generate Admit Card</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="vocabulary/flashcards.html">
+                        <h3>Bill </h3>
+                        <p>Memorize vocabulary with interactive flashcards.</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="practice/writing.html">
+                        <h3>Kanji Practice</h3>
+                        <p>Practice writing Japanese kanji with real-time feedback.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Shiksha Mitra. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

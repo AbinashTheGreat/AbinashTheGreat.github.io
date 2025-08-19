@@ -1,0 +1,499 @@
+/* Basic UI */
+body { 
+  font-family: Arial, monospace, sans-serif; 
+  background:#f3f4f6; 
+  margin:0; 
+  color:#111; 
+  line-height: 1.5;
+}
+
+.ui { 
+  display:flex; 
+  gap:18px; 
+  padding:18px; 
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.ui-left { 
+  width:320px; 
+  background:#fff; 
+  padding:14px; 
+  border-radius:8px; 
+  box-shadow:0 2px 6px rgba(0,0,0,.06); 
+}
+
+.ui-right { 
+  flex:1; 
+  background:#fff; 
+  padding:14px; 
+  border-radius:8px; 
+  box-shadow:0 2px 6px rgba(0,0,0,.06); 
+  overflow-x: auto;
+}
+
+label { 
+  display:block; 
+  margin-bottom:10px; 
+  font-size:14px; 
+}
+
+input[type=text], 
+input[type=number], 
+input[type=file] { 
+  width:100%; 
+  padding:8px; 
+  margin-top:6px; 
+  border:1px solid #ccc; 
+  border-radius:4px; 
+  box-sizing: border-box;
+}
+
+input:invalid {
+  border-color: #ff4444;
+}
+
+.buttons { 
+  margin-top:10px; 
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:8px; 
+}
+
+button { 
+  padding:8px 12px; 
+  background:#0077cc; 
+  color:#fff; 
+  border:0; 
+  border-radius:6px; 
+  cursor:pointer; 
+  font-size: 14px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button.ghost { 
+  background:#e0e0e0; 
+  color:#111; 
+}
+
+.help { 
+  margin-top:12px; 
+  font-size:13px; 
+  color:#444; 
+  background:#f7fbff; 
+  padding:8px; 
+  border-radius:6px; 
+}
+
+/* Print area and A4 marksheet */
+.print-area { 
+  display:flex; 
+  flex-direction:column; 
+  gap:16px; 
+  align-items:center; 
+}
+
+.marksheet { 
+  width:210mm; 
+  min-height:297mm; 
+  background:#fff; 
+  padding:18mm; 
+  box-sizing:border-box; 
+  border:1px solid #222; 
+  page-break-after:always; 
+  position: relative;
+}
+
+/* Header styled to echo ASCII block headings */
+.ascii-frame { 
+  border:2px solid #000; 
+  padding:10px; 
+}
+
+.sheet-top { 
+  display:flex; 
+  align-items:center; 
+  gap:14px; 
+  margin-bottom:8px; 
+}
+
+.logo-slot { 
+  width:90px; 
+  flex-shrink:0; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+}
+
+.logo-slot img { 
+  max-width:90px; 
+  max-height:90px; 
+  object-fit:contain; 
+  border:1px solid #ccc; 
+  padding:4px; 
+  background:white; 
+}
+
+.heading-block { 
+  text-align:center; 
+  flex:1; 
+  position: relative;
+  left: -50px;
+}
+
+.school-name { 
+  font-weight:700; 
+  font-size:20px; 
+  margin-top:2px; 
+  letter-spacing:.5px; 
+}
+
+.motto { 
+  font-style:italic; 
+  font-size:13px; 
+  margin-top:4px; 
+}
+
+.address { 
+  margin-top:2px; 
+  font-size:12px; 
+}
+
+.sheet-title { 
+  margin-top:6px; 
+  font-size:16px; 
+  font-weight:700; 
+  text-decoration:underline; 
+}
+
+/* Student block */
+.student-block {
+  margin-top: 30px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.student-block .row {
+  display: flex;
+  width: 100%;
+}
+
+.student-block .row .left {
+  flex: 1;
+  text-align: left;
+}
+
+.student-block .row .center {
+  flex: 1;
+  text-align: center;
+}
+
+.student-block .row .right {
+  flex: 1;
+  text-align: right;
+}
+
+/* Subject table */
+.marks-table { 
+  width:100%; 
+  border-collapse:collapse; 
+  margin-top:12px; 
+  font-size:14px; 
+}
+
+.marks-table th, 
+.marks-table td { 
+  border:1px solid #000; 
+  padding:6px; 
+  text-align:center; 
+}
+
+.marks-table th { 
+  background: white; 
+}
+
+.marks-table td:nth-child(2) { 
+  text-align:left; 
+  padding-left:8px; 
+}
+
+.summary-row { 
+  display:flex; 
+  justify-content:space-between; 
+  margin-top:10px; 
+  font-weight:700; 
+}
+
+.total-row { 
+  margin-top:6px; 
+  font-weight:700; 
+}
+
+/* Horizontal grade table */
+.grade-table-horizontal { 
+  margin-top:10px; 
+}
+
+.grade-table-horizontal .gt-title { 
+  font-weight:700; 
+  margin-bottom:6px; 
+}
+
+.gt-h { 
+  width:100%; 
+  border-collapse:collapse; 
+}
+
+.gt-h td { 
+  border:1px solid #000; 
+  padding:6px; 
+  text-align:center; 
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.gt-h-row.small td { 
+  font-size:11px; 
+}
+
+.attendance-row { 
+  margin-top:20px; 
+  display:flex; 
+  gap:24px; 
+  flex-wrap:wrap; 
+  font-size:15px;
+  font-weight: bold;
+}
+
+.issue-remarks { 
+  margin-top:50px; 
+  display:flex; 
+  gap:10px; 
+  flex-wrap:wrap; 
+  font-size:15px;
+  flex-direction: column; 
+  font-weight: bold;
+}
+
+/* Signatures */
+.signatures {
+  position: absolute;
+  bottom: 120px;
+  left: 60px;
+  width: calc(100% - 36mm);
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signatures div {
+  flex: 1;
+}
+
+.signature-line {
+  display: block;
+  margin-bottom: 5px;
+  border-top: 1px solid #000;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Subject management styles */
+#subjectContainer, 
+#gradeScaleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.subject-input, 
+.grade-scale-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.subject-input input, 
+.grade-scale-input input {
+  padding: 6px;
+}
+
+.subject-name, 
+.grade-letter {
+  flex: 2;
+}
+
+.subject-hours, 
+.grade-min, 
+.grade-max, 
+.grade-gp {
+  flex: 1;
+  max-width: 60px;
+}
+
+.remove-subject-btn, 
+.remove-grade-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-subject-btn:hover, 
+.remove-grade-btn:hover {
+  opacity: 0.8;
+}
+
+/* Toggle switch styles */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 34px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.toggle-label:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 58px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+input:checked + .toggle-label {
+  background-color: #0077cc;
+}
+
+input:checked + .toggle-label:before {
+  transform: translateX(54px);
+}
+
+.toggle-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  width: 50px;
+  text-align: center;
+}
+
+.toggle-text:first-child {
+  left: 10px;
+}
+
+.toggle-text:last-child {
+  right: 10px;
+}
+
+/* Checkbox label */
+label[for="showPercentageToggle"] {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+label[for="showPercentageToggle"] input {
+  width: auto;
+  margin: 0;
+}
+
+/* Print rules */
+@media print {
+  body { 
+    background:none; 
+  }
+  
+  .ui-left { 
+    display:none; 
+  }
+  
+  .marksheet { 
+    box-shadow:none; 
+    border:none; 
+    padding:10mm 15mm 15mm 10mm; 
+    margin:0 2mm 10mm 2mm;   
+    page-break-after:always; 
+
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  .ui {
+    flex-direction: column;
+  }
+  
+  .ui-left {
+    width: auto;
+  }
+}
+/* Date inputs style */
+.date-inputs {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.date-inputs input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+.estd, .iemis {
+  margin-top: 2px;
+  font-size: 12px;
+}

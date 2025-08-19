@@ -1,0 +1,509 @@
+/* Base Styles */
+body {
+    font-family: 'Times New Roman', Times, serif, serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f7fa;
+    color: #000;
+}
+
+html {
+    height: auto;
+}
+
+/* Layout */
+.ui-container {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.input-panel {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    min-width: 300px;
+}
+
+.preview-panel {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow-y: auto;
+    max-height: 90vh;
+    height: auto;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background: #2c3e50;
+    color: #fff;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #000;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.date-inputs input {
+    flex: 1;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.schedule-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.schedule-input-row input[type="text"] {
+    flex: 2;
+}
+
+.schedule-input-row input[type="date"] {
+    flex: 1.5;
+}
+
+.schedule-input-row button {
+    flex: 1;
+    background: #e74c3c;
+    color: #fff;
+}
+
+/* Modal */
+#columnMappingModal, #printConfirmModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-content button {
+    margin: 10px 5px;
+}
+
+/* Buttons */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+}
+
+#addSubjectBtn, #confirmMapping, #prevPage, #nextPage {
+    background: #2c3e50;
+    color: #fff;
+}
+
+#generateBtn {
+    background: #2c3e50;
+    color: #fff;
+}
+
+#printBtn, #pdfBtn, #confirmPrint {
+    background: #2ecc71;
+    color: #fff;
+}
+
+#resetBtn, #cancelPrint {
+    background: #e74c3c;
+    color: #fff;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Admit Card Styling */
+.admit-card {
+    width: 210mm;
+    height: 148.5mm;
+    min-height: auto;
+    padding: 12mm;
+    margin: 10mm auto;
+    background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+    border: 1pt solid #000;
+    box-shadow: inset 0 0 0 0.5pt #666;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.back-top {
+    margin-bottom: 0;
+}
+
+.back-bottom {
+    margin-top: 0;
+}
+
+.school-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.school-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border: 1px solid #000;
+    padding: 2px;
+}
+
+.header-text {
+    flex: 1;
+}
+
+.school-name {
+    font-size: 22pt;
+    margin: 0;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.motto {
+    font-style: italic;
+    color: #333;
+    margin: 2px 0;
+    font-size: 12pt;
+}
+
+.address {
+    margin: 0;
+    color: #333;
+    font-size: 12pt;
+}
+
+.admit-card h2 {
+    text-align: center;
+    margin: 8px 0;
+    color: #2c3e50;
+    font-size: 18pt;
+    font-weight: bold;
+    font-variant: small-caps;
+    border-bottom: 2px solid #2c3e50;
+    padding-bottom: 5px;
+}
+
+.student-info {
+    margin: 10px 0;
+    font-size: 14pt;
+    line-height: 1.4;
+}
+
+.student-info p {
+    margin: 6px 0;
+}
+
+.student-info .label {
+    font-weight: bold;
+}
+
+.student-photo {
+    position: absolute;
+    right: 12mm;
+    top: 32mm;
+    width: 70px;
+    height: 90px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.student-photo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.student-info.no-photo {
+    width: 100%;
+}
+
+.signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 8px;
+    border-top: 1px solid #000;
+}
+
+.signatures div {
+    width: 45%;
+    text-align: center;
+}
+
+.signatures img {
+    height: 75px;
+    margin-bottom: 3px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #666;
+}
+
+.signatures p {
+    margin-top: 10px;
+    font-size: 12pt;
+}
+
+/* Back Page Styling */
+.back-page .exam-schedule {
+    margin: 15px 0 20px;
+}
+
+.back-page .exam-schedule table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.back-page .exam-schedule th {
+    display: none;
+}
+
+.back-page .exam-schedule tr {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.back-page .exam-schedule td {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    font-size: 12pt;
+    line-height: 1.4;
+    position: relative;
+}
+
+.back-page .exam-schedule td:first-child::after {
+    content: "";
+    position: absolute;
+    right: -7px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background-color: #d0d0d0;
+}
+
+.back-page .exam-rules {
+    margin: 8px 0;
+}
+
+.back-page ol {
+    margin: 8px 0;
+    padding-left: 25px;
+    font-size: 12pt;
+    line-height: 1.3;
+}
+
+.back-page ol li {
+    margin-bottom: 4px;
+}
+
+.back-page ol li::marker {
+    font-weight: bold;
+}
+
+.class-teacher {
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.class-teacher h3 {
+    margin-top:30px;
+    font-size: 14pt;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.class-teacher p {
+    margin-top:30px;
+    font-size: 12pt;
+}
+
+.teacher-sig {
+    margin-top: 15px;
+}
+
+.teacher-sig img {
+    height: 75px;
+    margin-top: -35px;
+    margin-right: 20px;
+    display: block;
+    border-bottom: 1px solid #666;
+}
+
+.teacher-sig p {
+    margin: 0;
+    font-size: 12pt;
+}
+
+/* Print Styles */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+    }
+    
+    .input-panel, .pagination, #columnMappingModal, #printConfirmModal {
+        display: none;
+    }
+    
+    .preview-panel {
+        padding: 0;
+        box-shadow: none;
+        height: auto;
+        overflow: visible;
+    }
+    
+    .admit-card {
+        box-shadow: none;
+        margin: 10mm 0;
+        page-break-after: auto;
+    }
+
+    .back-top {
+        margin: 10mm auto;
+        page-break-after: auto;
+    }
+
+    .back-bottom {
+        margin: 10mm auto;
+        page-break-before: auto;
+    }
+
+    #backs {
+        page-break-before: always;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .ui-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .preview-panel {
+        max-height: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .modal-content button {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+.back-page .exam-schedule td {
+    /* Add these properties to the existing rule */
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 11pt;
+    letter-spacing: 0.5px;
+}
