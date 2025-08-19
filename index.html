@@ -1,25 +1,32 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Help For Students</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <title>Shiksha Mitra | Login</title>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Decimal to Binary Converter</h1>
-        <input type="number" placeholder="Enter a decimal number" id="decimal">
-        <button id="btn">Convert</button><br>
-        <p id="result"></p>
-    </div>
-    <div class="container">
-        <h1>Decimal to Binary Converter</h1>
-        <input type="number" placeholder="Enter a binary Number" id="binary">
-        <button id="binaryBtn">Convert</button><br>
-        <p id="binaryResult"></p>
-    </div>
-    <script src="script.js"></script>
-    <script src="binary.js"></script>
+    <header>
+        <h1>Shiksha Mitra - Login</h1>
+    </header>
+
+    <main>
+        <section class="login-container">
+            <form id="login-form" class="login-form">
+                <h2>Login to Your Account</h2>
+                <label for="username">Username:</label>
+                <input type="text" id="username" required placeholder="Enter Username">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required placeholder="Enter Password">
+                
+                <button type="submit" class="login-button">Login</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
